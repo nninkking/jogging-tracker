@@ -2,7 +2,7 @@
 import { first } from 'rxjs/operators';
 import { Location } from '@angular/common'
 import { User } from '../_models';
-import { UserService } from '../_services';
+import { UserService ,AuthenticationService} from '../_services';
 import { Router } from '@angular/router';
 
 
@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
 
     constructor(
         private userService: UserService, 
+        private authService: AuthenticationService,
         private location: Location,
         private router: Router) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loadAllUsers();
+        // this.loadAllUsers();
     }
 
     deleteUser(id: number) {
@@ -28,10 +29,9 @@ export class HomeComponent implements OnInit {
             this.loadAllUsers() 
         });
     }
-    logOut(){
-        window.localStorage.removeItem('currentUser')
-        this.location.replaceState('/')
-        this.router.navigate(['/login']);
+
+    logout(){
+        this.authService.logout()
     }
 
     private loadAllUsers() {

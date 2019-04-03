@@ -3,9 +3,10 @@ class User < ApplicationRecord
 	has_many :records
 	attr_accessor :password
 	enum roles: [ :user, :manager , :admin]
+	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 	
 	validates :firstname, :presence => true, :uniqueness => false, :length => { :in => 1..20 }
-	validates :email, :presence => true, :uniqueness => true
+	validates :email, :presence => true, :uniqueness => true, :format => VALID_EMAIL_REGEX
 	validates :lastname, :presence => true, :uniqueness => false, :length => { :in => 1..20 }
 	validates_length_of :password, :in => 4..20, :on => :create
 
