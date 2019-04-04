@@ -10,16 +10,14 @@ export class AuthenticationService {
 
 
     login(email: string, password: string) {
-        const httpOptions = {
-          headers: new HttpHeaders({ 
-            'Access-Control-Allow-Origin':'*',
-            'Authorization':'authkey',
-            'userid':'1',
-            'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-            'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
-          })
-        };
-        return this.http.post(`${environment.apiUrl}auth/signin`, { email: email, password: password } , httpOptions)
+        // const httpOptions = {
+        //   headers: new HttpHeaders({ 
+        //     'Access-Control-Allow-Origin':'*',
+        //     'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+        //     'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+        //   })
+        // };
+        return this.http.post(`${environment.apiUrl}auth/signin`, { email: email, password: password })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user) {
