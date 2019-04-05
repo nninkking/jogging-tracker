@@ -1,30 +1,29 @@
 class AuthController < ApplicationController
-	skip_before_action :verify_authenticity_token, :authenticate_request!
-	
+
+	skip_before_action :authenticate_request!
+
 	def signup
+		skip_authorization
 	   @user = User.new(user_params)
-	   
 	   if @user.save
 	      render json: @user
+
 	   else
-	      render json: {}, status: 401
+	      format.json { render json: @user.errors, status: :unprocessable_entity }
 	   end
 	   
 	end
 
 	def signin
+		skip_authorization
 		user = User.find_by_email(params[:email])
 	    if user && user.authenticate(params[:password])
 	    	auth_token = JsonWebToken.encode({user_id: user.id})
-	    	
-
-
 	      	render json: { user: user, token: auth_token}
-	      # session[:user_id] = user.id
-	      # redirect_to root_url, notice: "Logged in!"
 	    else
 	      render json: {}, status: 401
     	end
+    	
 	end
 
 	def user_params

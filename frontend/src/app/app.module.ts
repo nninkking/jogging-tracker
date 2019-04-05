@@ -12,29 +12,56 @@ import { routing }        from './app.routing';
 import { AlertComponent } from './_directives';
 import { AuthGuard } from './_guards';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { AlertService, AuthenticationService, UserService } from './_services';
+import { AlertService, AuthenticationService, UserService , RecordService} from './_services';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TablePaginationComponentComponent } from './table-pagination-component/table-pagination-component.component';
+import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatPaginator, MatTableDataSource, MatTabsModule, MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule} from '@angular/material';
+import {DemoMaterialModule} from './material-module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { RecordUpdateComponent } from './record-update';
+import { HeaderComponent } from './header/header.component';
+import { CommonModule } from '@angular/common';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        routing
-    ],
+        routing,
+        TooltipModule.forRoot() ,
+        BsDatepickerModule.forRoot()   ,
+        BrowserAnimationsModule,
+        DemoMaterialModule,
+        MatSidenavModule,
+        MatTabsModule,
+        MatToolbarModule,
+        NgbModule,
+        MatIconModule,
+        MatButtonModule,
+        CommonModule,
+        FlexLayoutModule
+        ],
     declarations: [
         AppComponent,
         AlertComponent,
         HomeComponent,
         LoginComponent,
-        RegisterComponent
-    ],
+        RegisterComponent ,
+        TablePaginationComponentComponent,
+        RecordUpdateComponent,
+        HeaderComponent
+        ],
     providers: [
         AuthGuard,
         AlertService,
         AuthenticationService,
+        RecordService,
         UserService,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

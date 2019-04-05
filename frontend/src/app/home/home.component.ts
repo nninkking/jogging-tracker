@@ -4,7 +4,7 @@ import { Location } from '@angular/common'
 import { User } from '../_models';
 import { UserService ,AuthenticationService} from '../_services';
 import { Router } from '@angular/router';
-
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @Component({templateUrl: 'home.component.html'})
 export class HomeComponent implements OnInit {
@@ -29,11 +29,6 @@ export class HomeComponent implements OnInit {
             this.loadAllUsers() 
         });
     }
-
-    logout(){
-        this.authService.logout()
-    }
-
     private loadAllUsers() {
         this.userService.getAll().pipe(first()).subscribe(users => { 
             this.users = users; 
