@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
   	}else{
   		this.show = false;
   	}
-  	console.log('hello')
   }
   logout(){
     this.authService.logout()

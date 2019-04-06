@@ -9,7 +9,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 @Component({templateUrl: 'home.component.html'})
 export class HomeComponent implements OnInit {
     currentUser: User;
-    users: User[] = [];
+    users: any = [];
 
     constructor(
         private userService: UserService, 

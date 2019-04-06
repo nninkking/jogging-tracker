@@ -7,11 +7,9 @@ class AuthController < ApplicationController
 	   @user = User.new(user_params)
 	   if @user.save
 	      render json: @user
-
 	   else
 	      format.json { render json: @user.errors, status: :unprocessable_entity }
-	   end
-	   
+	   end 
 	end
 
 	def signin
@@ -23,7 +21,6 @@ class AuthController < ApplicationController
 	    else
 	      render json: {}, status: 401
     	end
-    	
 	end
 
 	def user_params

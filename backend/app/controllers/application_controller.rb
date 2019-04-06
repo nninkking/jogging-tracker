@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
 	
 	protected
 	def authenticate_request!
-	  
 	  if !payload || !JsonWebToken.valid_payload(payload.first)
 	    return invalid_authentication
 	  end
@@ -34,7 +33,6 @@ class ApplicationController < ActionController::Base
 	def payload
 	  auth_header = request.headers['Authorization']
 	  token = auth_header.split(' ').last
-	  
 	  JsonWebToken.decode(token)
 	rescue
 	  nil

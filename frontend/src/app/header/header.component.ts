@@ -8,6 +8,7 @@ import { User } from '../_models';
 })
 export class HeaderComponent implements OnInit {
   currentUser : User;
+
   public show: boolean = false;
   constructor(private authService: AuthenticationService, private userService: UserService) {
   	this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -21,6 +22,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   	console.log('hello')
+  }
+  isAdmin(){
+
+  	
   }
   logout(){
     this.authService.logout()
