@@ -1,4 +1,7 @@
 class Record < ApplicationRecord
 	belongs_to :user
-	validates_presense_of :date
+	validates :distance, numericality: { only_integer: true }
+	validates :time, numericality: { only_integer: true }
+	validates :user_id, numericality: { only_integer: true }
+  	# validates_presense_of :date
 end

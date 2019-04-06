@@ -10,16 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_03_151358) do
+ActiveRecord::Schema.define(version: 2019_04_06_143527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "records", force: :cascade do |t|
+    t.integer "distance"
+    t.integer "time"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_records_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "firstname"
     t.string "lastname"
-    t.integer "role"
+    t.integer "role", default: 0
     t.string "password_salt"
     t.string "password_hash"
   end
