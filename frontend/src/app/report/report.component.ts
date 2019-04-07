@@ -29,8 +29,6 @@ export class ReportComponent implements OnInit {
         distance: 0,
         time: 0
       });
-     // this.reportservice.getAlllist().subscribe((data: any) => this.setData(data.records));      
-     // this.setData(data.records)
   }
 
 
