@@ -1,0 +1,69 @@
+<p>
+  Jogging Track Report
+</p>
+
+<div class= "row">
+	<div class="col-xs-12 col-12 col-sm-6 col-md-4 form-group">
+    <input type="text"
+           placeholder="From"
+           class="form-control"
+           bsDatepicker
+           [bsConfig]="{ adaptivePosition: true }"
+           (bsValueChange)="onValueChangefrom($event)"
+           [bsValue] = "fromDate"
+           >
+  	</div>
+    <div class="col-xs-12 col-12 col-sm-6 col-md-4 form-group">
+	    <input type="text"
+	           placeholder="To"
+	           class="form-control"
+	           bsDatepicker
+	           [bsConfig]="{ adaptivePosition: true }"
+             (bsValueChange)="onValueChangeto($event)"
+             [bsValue] = "toDate"
+             >
+    </div>
+	<div class="col-xs-12 col-12 col-sm-6 col-md-4 form-group">
+		<button class="form-control" (click)="ExportToCSV($event)"> Export CSV </button>
+    </div>
+</div>
+
+  <hr>
+
+  
+<div class="mat-elevation-z8">
+    <table class="table-width" mat-table [dataSource]="dataSource">
+      <!-- Name Column -->
+      <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.created_date | date:'y/M/d'}} </td>
+      </ng-container>
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Distance">
+        <th mat-header-cell *matHeaderCellDef> Distance </th>
+        <td mat-cell *matCellDef="let element"> {{element.distance}} (m)</td>
+      </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="Time">
+        <th mat-header-cell *matHeaderCellDef> Time </th>
+        <td mat-cell *matCellDef="let element"> {{element.time}} (m)</td>
+      </ng-container>
+      <ng-container matColumnDef="Average">	
+        <th mat-header-cell *matHeaderCellDef> Average </th>
+        <td mat-cell *matCellDef="let element"> {{element.average_speed}} (m/m)</td>
+      </ng-container>
+      
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+
+  </div>
+<div>
+
+</div>
+<!-- Copyright 2019 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->
