@@ -4,6 +4,7 @@ import { HomeComponent } from './home';
 import { TablePaginationComponentComponent } from './table-pagination-component';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
+import { ReportComponent } from './report';
 import { AuthGuard } from './_guards';
 import { RecordUpdateComponent } from './record-update';
 import { UserCreateComponent } from './user-create';
@@ -11,6 +12,7 @@ import { UserCreateComponent } from './user-create';
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'records', component: TablePaginationComponentComponent, canActivate: [AuthGuard] },
+    { path: 'report', component: ReportComponent, canActivate: [AuthGuard] },
     { path: 'users', component: UserComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },

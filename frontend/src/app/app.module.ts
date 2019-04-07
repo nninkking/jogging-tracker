@@ -2,7 +2,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
 
@@ -12,7 +11,7 @@ import { routing }        from './app.routing';
 import { AlertComponent } from './_directives';
 import { AuthGuard } from './_guards';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { AlertService, AuthenticationService, UserService , RecordService} from './_services';
+import { AlertService, AuthenticationService, UserService , RecordService, ReportService} from './_services';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
@@ -29,7 +28,9 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';;
 import { UserComponent } from './user';
 import { UserCreateComponent } from './user-create/user-create.component';
-import { UserUpdateComponent } from './user-update/user-update.component'
+import { UserUpdateComponent } from './user-update/user-update.component';
+import { ReportComponent } from './report/report.component';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -61,13 +62,15 @@ import { UserUpdateComponent } from './user-update/user-update.component'
         HeaderComponent,
         UserComponent,
         UserCreateComponent ,
-        UserUpdateComponent       ],
+        UserUpdateComponent ,
+        ReportComponent],
     providers: [
         AuthGuard,
         AlertService,
         AuthenticationService,
         RecordService,
         UserService,
+        ReportService,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     ],
