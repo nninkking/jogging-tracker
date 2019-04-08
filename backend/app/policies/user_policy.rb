@@ -27,7 +27,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin?
+    (user.admin? and record.id != user.id) or (user.manager? and record.regular?)
   end
   
   def permitted_attributes
