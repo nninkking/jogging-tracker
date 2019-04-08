@@ -8,12 +8,12 @@ class AuthController < ApplicationController
 	   if @user.save
 	      render json: @user
 	   else
-	      format.json { render json: @user.errors, status: :unprocessable_entity }
+	      render json: @user.errors, status: :unprocessable_entity
 	   end 
 	end
 
 	def signin
-		skip_authorization
+		skip_authorization		
 		user = User.find_by_email(params[:email])
 	    if user && user.authenticate(params[:password])
 	    	auth_token = JsonWebToken.encode({user_id: user.id})

@@ -5,8 +5,6 @@ class UsersController < ApplicationController
   # GET /records.json
   def index
     users = policy_scope(User)
-    print ("----------------------show data-------------------")
-    print (users)
     render json: { users: users }
   end
 
@@ -44,11 +42,7 @@ class UsersController < ApplicationController
     authorize(@user)
     @user.destroy
     users = policy_scope(User)
-    if users
-        render json: { users: users}
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
+    render json: { users: users}
   end
 
   private
